@@ -8,3 +8,14 @@ height: fit-content;
   object-fit: cover;
   filter:brightness(0.6);
 }
+
+.carousel-item.b-item h5 {
+  font-size: 6rem; /* change font size to 3 rem */
+  margin-top: 20px; /* change top margin to 20 pixels */
+  
+}
+
+.carousel-item.b-item p {
+  font-size: 5rem; /* change font size to 2 rem */
+  margin-top: 10px; /* change top margin to 10 pixels */
+}

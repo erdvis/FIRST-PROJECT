@@ -23,6 +23,17 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
   crossorigin="anonymous"></script>
 
+  <script>
+    $(window).on('scroll', function() {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop > 2000) { // adjust the number to the scroll position where you want the text to appear
+          $('.spinner-border.g-item').addClass('show');
+        } else {
+          $('.spinner-border.g-item').removeClass('show');
+        }
+      });
+    </script>
+
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

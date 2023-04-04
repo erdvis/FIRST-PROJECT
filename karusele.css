@@ -1,0 +1,10 @@
+.c-item {
+height: fit-content;
+
+}
+
+.c-img {
+  height: 100%;
+  object-fit:cover;
+  filter:brightness(0.6);
+}

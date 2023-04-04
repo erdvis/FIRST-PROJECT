@@ -19,3 +19,14 @@ height: fit-content;
   font-size: 5rem; /* change font size to 2 rem */
   margin-top: 10px; /* change top margin to 10 pixels */
 }
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  .carousel-item.b-item h5 {
+    font-size: 3rem;
+  }
+  
+  .carousel-item.b-item p {
+    font-size: 2rem;
+  }
+}

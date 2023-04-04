@@ -30,3 +30,27 @@ height: fit-content;
     font-size: 2rem;
   }
 }
+
+.spinner-border.g-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: none;
+}
+
+.spinner-border.g-item.show {
+  display: block;
+  top: 80%; /* adjust the number to the desired position */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+

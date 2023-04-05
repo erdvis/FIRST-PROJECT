@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="karusele.css">
     <title>My Strava Activities</title>
     <link rel="stylesheet" href="karusele.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <!-- Bootstrap CSS -->
@@ -96,39 +97,17 @@
             </button>
         </div>
 
- <body>
-    // Import the Strava API client library
-<script StravaApiV3 = require('strava_api_v3');
-
-// Instantiate a new Strava API client
-const defaultClient = StravaApiV3.ApiClient.instance;
-
-// Set the access token for the Strava API client
-const stravaOAuth = defaultClient.authentications['strava_oauth'];
-stravaOAuth.accessToken = 'YOUR_ACCESS_TOKEN_HERE';
-
-// Instantiate a new Activities API object
-const activitiesApi = new StravaApiV3.ActivitiesApi();
-
-// Set the options for the getLoggedInAthleteActivities function
-const options = {
-  page: 1, // The page number to retrieve
-  perPage: 10, // The number of activities to retrieve per page
-};
-
-// Define a callback function to handle the API response
-const handleApiResponse = (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data:', data);
-  }
-};
-
-// Call the getLoggedInAthleteActivities function with the provided options and callback function
-activitiesApi.getLoggedInAthleteActivities(options, handleApiResponse);
-
- </body>
+        <body>
+            <h1>Strava Activities</h1>
+            <ul id="activities-list"></ul>
+            <script>
+              $.get('/strava/activities', function(data) {
+                $.each(data, function(i, activity) {
+                  $('#activities-list').append('<li>' + activity.name + '</li>');
+                });
+              });
+            </script>
+          </body>
 
 
        

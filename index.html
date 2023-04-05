@@ -97,9 +97,90 @@
         </div>
 
  <body>
-  <h1>My Strava Activities</h1>
-  <ul id="activities"></ul>
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>My Strava Activities</h1>
+        <div id="activities"></div>
+      </div>
+    
+      <script src="script.js"></script>
+      <script>
+        // Strava API credentials
+        const CLIENT_ID = '105169';
+        const CLIENT_SECRET = '74dd0421d623e562d4dbe5063e7ddf6d41fd1f9d';
+        const REDIRECT_URI = 'c3a58af0fd13e83ab1166609561afd27be33ace1';
+        const SCOPE = 'read_all';
+    
+        // Strava API endpoints
+        const AUTH_ENDPOINT = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPE}`;
+        const TOKEN_ENDPOINT = 'https://www.strava.com/oauth/token';
+        const API_ENDPOINT = 'https://www.strava.com/api/v3/athlete/activities';
+    
+        // Access token
+        let access_token = null;
+    
+        // Retrieve access token from Strava API
+        function getAccessToken() {
+          const code = new URLSearchParams(window.location.search).get('code');
+          if (!code) {
+            // Redirect user to Strava authorization page
+            window.location.href = AUTH_ENDPOINT;
+          } else {
+            // Exchange authorization code for access token
+            const data = {
+              client_id: CLIENT_ID,
+              client_secret: CLIENT_SECRET,
+              code: code,
+              grant_type: 'authorization_code'
+            };
+            fetch(TOKEN_ENDPOINT, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            })
+              .then(response => response.json())
+              .then(data => {
+                access_token = data.access_token;
+                getActivities();
+              })
+              .catch(error => console.error(error));
+          }
+        }
+    
+        // Retrieve activities from Strava API
+        function getActivities() {
+          const headers = {
+            'Authorization': `Bearer ${access_token}`
+          };
+          fetch(API_ENDPOINT, {
+            headers: headers
+          })
+            .then(response => response.json())
+            .then(data => {
+              renderActivities(data);
+            })
+            .catch(error => console.error(error));
+        }
+    
+        // Render activities on web page
+        function renderActivities(activities) {
+          const activitiesDiv = document.getElementById('activities');
+          let html = '';
+          activities.forEach(activity => {
+            html += `<div class="activity">
+                       <h2>${activity.name}</h2>
+                       <p>${activity.type} - ${activity.distance}m</p>
+                       <p>Start time: ${activity.start_date}</p>
+                     </div>`;
+          });
+          activitiesDiv.innerHTML = html;
+        }
+    
+        // Entry point
+        getAccessToken();
+      </script>
+    </body>
  </body>
 
 

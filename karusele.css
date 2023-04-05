@@ -34,14 +34,14 @@ height: fit-content;
 .spinner-border.g-item {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 200%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  display: none;
+  display:flex;
 }
 
 .spinner-border.g-item.show {
-  display: block;
+  display:flex;
   top: 80%; /* adjust the number to the desired position */
 }
 
@@ -50,7 +50,44 @@ height: fit-content;
     transform: rotate(-45deg);
   }
   100% {
-    transform: rotate(45deg);
+    transform: rotate(60deg);
   }
 }
 
+.yoo {
+  position: absolute;
+  top: 100;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.video-wrapper {
+
+  opacity: 100%;
+  transform:rotate(deg);
+}
+
+
+#activities {
+  list-style-type: none;
+  padding: 0;
+}
+
+.activity {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.activity h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.activity p {
+  margin: 10px 0 0;
+  font-size: 16px;
+}
